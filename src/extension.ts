@@ -1,4 +1,7 @@
 import * as vscode from 'vscode';
+import {isFlutterProject} from './utils/fileSystemManager';
+import {getRootPath} from './utils/vscodeActions';
+import {isUndefined} from 'lodash';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -6,6 +9,13 @@ export function activate(context: vscode.ExtensionContext) {
 	const wsedit = new vscode.WorkspaceEdit();
 
 	let initialize = vscode.commands.registerCommand('ddd-flutter-generator.initialize', async () => {
+		if (!isFlutterProject()) {
+			return;
+		}
+		const rootPath = getRootPath();
+		if (isUndefined(rootPath)) {
+			return;
+		}
 		vscode.window.showInformationMessage('Initialize from DDD-Flutter-Generator!');
 	});
 
@@ -39,8 +49,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 			const p = new Promise(resolve => {
 				setTimeout(() => {
-					resolve();
-				}, 5000);
+					return resolve(1);
+				}, 1000);
 			});
 
 			return p;
