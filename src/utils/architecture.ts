@@ -1,5 +1,5 @@
 import {initializeWithDependencies} from './yamlHelper';
-import {createFile, doesFileExist} from './fileSystemManager';
+import {createFile, doesFileExist, createFolder} from './fileSystemManager';
 import {openFile} from './utils';
 import {join} from 'path';
 import Home from '../dart_snippets/architecture/home';
@@ -20,17 +20,29 @@ const init = (rootPath: string) => {
 
 const initPages = (rootPath: string) => {
     const pagesPath = join(rootPath, 'presentation', 'pages');
+    const folderCreated = createFolder(pagesPath);
+    if (!folderCreated) {
+        return;
+    }
 
     createNewFile(join(pagesPath, 'home'), 'home_screen.dart', Home());
 };
 
 const initRoutes = (rootPath: string) => {
     const routesPath = join(rootPath, 'presentation', 'routes');
+    const folderCreated = createFolder(routesPath);
+    if (!folderCreated) {
+        return;
+    }
 
     createNewFile(routesPath, 'router.dart', Router());
 };
 
 const createNewFile = (filePath: string, fileName: string, content: string) => {
+    const folderCreated = createFolder(filePath);
+    if (!folderCreated) {
+        return;
+    }
     if (doesFileExist(filePath, fileName)) {
         console.error(`${fileName} already exists`);
         return;
@@ -41,6 +53,10 @@ const createNewFile = (filePath: string, fileName: string, content: string) => {
 };
 
 const createExistingFile = (filePath: string, fileName: string, content: string) => {
+    const folderCreated = createFolder(filePath);
+    if (!folderCreated) {
+        return;
+    }
     createFile(filePath, fileName, content);
     openFile(join(filePath, fileName));
 };

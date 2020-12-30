@@ -9,11 +9,12 @@ const initializeWithDependencies = () => {
     addDependencyToPubspec('flutter_bloc', '6.1.1');
     addDependencyToPubspec('freezed_annotation', '0.12.0');
     addDependencyToPubspec('get_it', '5.0.3');
-    addDependencyToPubspec('injectable', '1.0.5');
+    addDependencyToPubspec('injectable', '1.0.7');
     addDependencyToPubspec('kt_dart', '0.8.0');
     addDependencyToPubspec('rxdart', '0.25.0');
     addDependencyToPubspec('uuid', '2.2.2');
-    addDependencyToPubspec('lint', '1.5.1', true);
+    addDependencyToPubspec('auto_route', '0.6.9');
+    addDependencyToPubspec('lint', '1.0.0', true);
     addDependencyToPubspec('build_runner', '1.10.11', true);
     addDependencyToPubspec('freezed', '0.12.6', true);
     addDependencyToPubspec('auto_route_generator', '0.6.10', true);

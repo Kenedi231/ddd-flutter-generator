@@ -3,11 +3,12 @@ const Router = () => {
 
 import '../pages/home/home_screen.dart';
 
-@MaterialAutoRouter()
-class $Router {
-    @initial
-    HomeScreen homeScreen;
-}
+@MaterialAutoRouter(
+  routes: [
+    MaterialRoute(page: HomeScreen, initial: true),
+  ]
+)
+class $AutoRouter {}
 `;
 };
 

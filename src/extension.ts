@@ -2,6 +2,8 @@ import * as vscode from 'vscode';
 import {isFlutterProject} from './utils/fileSystemManager';
 import {getRootPath} from './utils/vscodeActions';
 import {isUndefined} from 'lodash';
+import {join} from 'path';
+import {init} from './utils/architecture';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -16,6 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
 		if (isUndefined(rootPath)) {
 			return;
 		}
+		init(join(rootPath, 'lib'));
 		vscode.window.showInformationMessage('Initialize from DDD-Flutter-Generator!');
 	});
 

@@ -1,4 +1,8 @@
-import {workspace, WorkspaceConfiguration, window} from 'vscode';
+import {
+    workspace,
+    WorkspaceConfiguration,
+    window,
+} from 'vscode';
 import {isUndefined} from 'lodash';
 
 const getRootPath = () => {
@@ -17,4 +21,8 @@ const showErrorMessage = (message: string) => {
     window.showErrorMessage(message);
 };
 
-export {getRootPath, getEditorConfiguration, showErrorMessage};
+const execute = () => {
+    
+};
+
+export {getRootPath, getEditorConfiguration, showErrorMessage, execute};

@@ -1,6 +1,7 @@
 import {existsSync, readFileSync, writeFileSync} from 'fs';
 import {join} from 'path';
 import {openFile} from './utils';
+import {mkdir} from 'shelljs';
 import {getRootPath, showErrorMessage} from './vscodeActions';
 
 const createFile = (filePath: string, fileName: string, content: string) => {
@@ -21,6 +22,18 @@ const readFileAsString = (filePath: string, fileName: string): string | undefine
     return buffer.toString();
 };
 
+const createFolder = (path: string) => {
+    if (!existsSync(path)) {
+        try {
+            mkdir('-p', path);
+        } catch(error) {
+            console.error(`Unable to create folder: ${error}`);
+            return false;
+        }
+    }
+    return true;
+}
+
 const isFlutterProject = (): boolean => {
     const rootPath = getRootPath();
     if (!existsSync(join(rootPath, 'pubspec.yaml'))) {
@@ -30,4 +43,10 @@ const isFlutterProject = (): boolean => {
     return true;
 };
 
-export {readFileAsString, createFile, isFlutterProject, doesFileExist};
+export {
+    createFolder,
+    readFileAsString,
+    createFile,
+    isFlutterProject,
+    doesFileExist,
+};
